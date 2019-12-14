@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Patient {
@@ -60,7 +61,6 @@ public class Patient {
 		this.billAmount = billAmount;
 	}
 
-
 	public Doctor getDoctor() {
 		return doctor;
 	}
@@ -70,12 +70,7 @@ public class Patient {
 		this.doctor = doctor;
 	}
 
-
-	@Override
-	public String toString() {
-		return "Patient [patientId=" + patientId + ", patientName=" + patientName + ", billAmount=" + billAmount
-				+ ", doctor=" + doctor + "]";
-	}
+}
 	
 
-}
+

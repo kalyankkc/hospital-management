@@ -5,10 +5,11 @@ import java.util.List;
 
 import com.mindtree.hospitalmanagmentsystem.entity.Doctor;
 import com.mindtree.hospitalmanagmentsystem.entity.Patient;
+import com.mindtree.hospitalmanagmentsystem.exception.ServiceException;
 
 public interface HospitalManagmentService {
 
-	public Patient assignDoctorToPatient(String doctorName, String patientName);
+	public Patient assignDoctorToPatient(String doctorName, String patientName) throws ServiceException;
 
 	public List<Doctor> getDoctors();
 

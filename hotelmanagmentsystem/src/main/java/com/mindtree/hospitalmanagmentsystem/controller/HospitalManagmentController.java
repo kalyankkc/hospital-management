@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mindtree.hospitalmanagmentsystem.entity.Doctor;
 import com.mindtree.hospitalmanagmentsystem.entity.Patient;
+import com.mindtree.hospitalmanagmentsystem.exception.ServiceException;
 import com.mindtree.hospitalmanagmentsystem.service.HospitalManagmentService;
 
 @RestController
@@ -19,10 +20,12 @@ public class HospitalManagmentController {
 	HospitalManagmentService hospitalservice;
 	
 	@GetMapping(path="/assignDoctor/{doctorName}/{patientName}")
-	public Patient assignDoctorToPatient(@PathVariable("doctorName") String doctorName,@PathVariable("patientName") String patientName)
+	public Patient assignDoctorToPatient(@PathVariable("doctorName") String doctorName,@PathVariable("patientName") String patientName) throws ServiceException
 	{
-		return hospitalservice.assignDoctorToPatient(doctorName,patientName);
-		
+	 Patient p= new Patient();
+		p= hospitalservice.assignDoctorToPatient(doctorName,patientName);
+    return p;
+		 
 	}
 	
 	@GetMapping(path="/getDoctors")

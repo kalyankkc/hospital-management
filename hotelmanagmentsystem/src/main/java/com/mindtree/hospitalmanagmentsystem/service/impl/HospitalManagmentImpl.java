@@ -30,7 +30,7 @@ public class HospitalManagmentImpl implements HospitalManagmentService {
 	RepositoryPatient patientrepo;
 	
 
-	public Patient assignDoctorToPatient(String doctorName, String patientName) {
+	public Patient assignDoctorToPatient(String doctorName, String patientName) throws ServiceException {
 		// TODO Auto-generated method stub
 		
 		List<Doctor> doctors=new ArrayList<Doctor>();
@@ -81,7 +81,7 @@ public class HospitalManagmentImpl implements HospitalManagmentService {
 		{
 			try {
 			throw new DoctorNotFoundException("doctor not found");
-		}catch(PatientNotFoundException e)
+		}catch(DoctorNotFoundException e)
 			{
 			 throw new ServiceException(e.getMessage());
 			}
@@ -156,6 +156,10 @@ public class HospitalManagmentImpl implements HospitalManagmentService {
 	public void writeIntoTextFile() throws IOException {
 		List<Doctor>doctors =new ArrayList<Doctor>();
 		
+		doctors=doctorrepo.findAll();
+		//System.out.println(doctors);
+		
+		
 		String result="";
 		
 		for (Doctor doctor : doctors) {
@@ -164,12 +168,14 @@ public class HospitalManagmentImpl implements HospitalManagmentService {
 		}
 		System.out.println(result);
 		
-		FileWriter fr=new FileWriter("C:\\Users\\M1056104\\Desktop\\output");
-		BufferedWriter bw=new BufferedWriter(fr);
+		FileWriter fw=new FileWriter("C:\\Users\\M1056104\\Desktop\\output.txt");
+		BufferedWriter bw=new BufferedWriter(fw);
+		//fw.write("hi i am inside the output file");
+		fw.write(result);
 		
-		bw.write(result);
 		
 		bw.close();
+		fw.close();
 		
 	}
 	
