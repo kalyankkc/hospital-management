@@ -1,6 +1,5 @@
 package com.mindtree.hospitalmanagmentsystem.entity;
 
-import java.util.Comparator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,49 +14,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Doctor {
 	@Id
 	public int doctorId;
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + doctorId;
-		result = prime * result + ((doctorName == null) ? 0 : doctorName.hashCode());
-		result = prime * result + experience;
-		result = prime * result + ((patient == null) ? 0 : patient.hashCode());
-		result = prime * result + salary;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Doctor other = (Doctor) obj;
-		if (doctorId != other.doctorId)
-			return false;
-		if (doctorName == null) {
-			if (other.doctorName != null)
-				return false;
-		} else if (!doctorName.equals(other.doctorName))
-			return false;
-		if (experience != other.experience)
-			return false;
-		if (patient == null) {
-			if (other.patient != null)
-				return false;
-		} else if (!patient.equals(other.patient))
-			return false;
-		if (salary != other.salary)
-			return false;
-		return true;
-	}
-
 	public String doctorName;
 	public int experience;
-	@Column(nullable=true)
+	@Column(nullable = true)
 	public int salary;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
@@ -124,5 +83,44 @@ public class Doctor {
 		this.patient = patient;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + doctorId;
+		result = prime * result + ((doctorName == null) ? 0 : doctorName.hashCode());
+		result = prime * result + experience;
+		result = prime * result + ((patient == null) ? 0 : patient.hashCode());
+		result = prime * result + salary;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Doctor other = (Doctor) obj;
+		if (doctorId != other.doctorId)
+			return false;
+		if (doctorName == null) {
+			if (other.doctorName != null)
+				return false;
+		} else if (!doctorName.equals(other.doctorName))
+			return false;
+		if (experience != other.experience)
+			return false;
+		if (patient == null) {
+			if (other.patient != null)
+				return false;
+		} else if (!patient.equals(other.patient))
+			return false;
+		if (salary != other.salary)
+			return false;
+		return true;
+	}
 
 }

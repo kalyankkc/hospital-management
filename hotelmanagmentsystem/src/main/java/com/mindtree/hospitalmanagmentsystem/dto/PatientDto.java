@@ -1,28 +1,19 @@
-package com.mindtree.hospitalmanagmentsystem.entity;
+package com.mindtree.hospitalmanagmentsystem.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+public class PatientDto {
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@Entity
-public class Patient {
-	@Id
 	public int patientId;
 	public String patientName;
 	public int billAmount;
 
-	@ManyToOne
-	Doctor doctor;
+	private DoctorDto doctor;
 
-	public Patient() {
+	public PatientDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Patient(int patientId, String patientName, int billAmount, Doctor doctor) {
+	public PatientDto(int patientId, String patientName, int billAmount, DoctorDto doctor) {
 		super();
 		this.patientId = patientId;
 		this.patientName = patientName;
@@ -54,13 +45,20 @@ public class Patient {
 		this.billAmount = billAmount;
 	}
 
-	public Doctor getDoctor() {
+	public DoctorDto getDoctor() {
 		return doctor;
 	}
 
-	@JsonIgnoreProperties("patient")
-	public void setDoctor(Doctor doctor) {
+	public void setDoctor(DoctorDto doctor) {
 		this.doctor = doctor;
 	}
+
+	@Override
+	public String toString() {
+		return "PatientDto [patientId=" + patientId + ", patientName=" + patientName + ", billAmount=" + billAmount
+				+ ", doctor=" + doctor + "]";
+	}
+
+	
 
 }

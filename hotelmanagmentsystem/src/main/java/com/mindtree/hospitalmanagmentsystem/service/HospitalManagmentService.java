@@ -13,8 +13,10 @@ public interface HospitalManagmentService {
 
 	public List<Doctor> getDoctors();
 
-	public List<Doctor> getDoctorswithsomecriteria();
+	public List<Doctor> getDoctorswithsomecriteria() throws ServiceException;
 
 	public void writeIntoTextFile() throws IOException;
+	
+	public void writeIntoExcelSheet();
 
 }
